@@ -1,4 +1,4 @@
-package ch01;
+package fundamentals;
 
 public interface Stack<Item> extends Collection<Item> {
 

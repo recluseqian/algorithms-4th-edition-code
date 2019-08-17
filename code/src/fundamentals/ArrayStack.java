@@ -1,6 +1,8 @@
-package ch01;
+package fundamentals;
 
 import java.util.Iterator;
+import edu.princeton.cs.algs4.StdIn;
+import edu.princeton.cs.algs4.StdOut;
 
 public class ArrayStack<Item> implements Stack<Item> {
 
@@ -12,7 +14,7 @@ public class ArrayStack<Item> implements Stack<Item> {
 
     private void resize(int capacity) {
         Item[] newData = (Item[]) new Object[capacity];
-        System.arraycopy(mData, 0, newData, 0, mData.length);
+        System.arraycopy(mData, 0, newData, 0, mCurIndex + 1);
         mData = newData;
     }
     @Override
@@ -28,7 +30,9 @@ public class ArrayStack<Item> implements Stack<Item> {
         if (mCurIndex == 0) {
             return null;
         }
+
         Item item = mData[--mCurIndex];
+        mData[mCurIndex] = null;
 
         if (mCurIndex <= mData.length/4) {
             resize(mData.length/2);
@@ -67,6 +71,19 @@ public class ArrayStack<Item> implements Stack<Item> {
 
 
     public static void main(String[] args) {
-        
+        Stack<String> stack = new ArrayStack<>();
+
+        while (!StdIn.isEmpty()) {
+            String item = StdIn.readString();
+            if (!item.equals("-")) {
+                stack.push(item);
+            } else {
+                StdOut.print(stack.pop() + " ");
+            }
+        }
+        System.out.println();
+        for (String s : stack) {
+            StdOut.print(s + " ");
+        }
     }
 }
