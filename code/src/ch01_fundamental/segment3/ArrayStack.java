@@ -1,4 +1,4 @@
-package fundamentals;
+package ch01_fundamental.segment3;
 
 import java.util.Iterator;
 import edu.princeton.cs.algs4.StdIn;

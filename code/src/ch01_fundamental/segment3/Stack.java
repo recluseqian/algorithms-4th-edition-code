@@ -1,4 +1,4 @@
-package fundamentals;
+package ch01_fundamental.segment3;
 
 public interface Stack<Item> extends Collection<Item> {
 
