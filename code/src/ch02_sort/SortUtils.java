@@ -14,7 +14,7 @@ public class SortUtils {
 
     public static boolean isSorted(Comparable[] arr) {
         for (int i = 0; i < arr.length - 1; i++) {
-            if (less(arr[i + 1], arr[i])) {
+            if (less(arr[i], arr[i + 1])) {
                 return false;
             }
         }

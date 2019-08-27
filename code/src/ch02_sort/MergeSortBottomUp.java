@@ -2,15 +2,14 @@ package ch02_sort;
 
 import common.Const;
 import edu.princeton.cs.algs4.In;
-import edu.princeton.cs.algs4.Merge;
 
 import java.io.File;
 
-public class MergeSort {
+public class MergeSortBottomUp {
 
-    private static int LOW_THRESHOLD = 5;
     private static Comparable[] aux;
     public static void merge(Comparable[] arr, int lo, int mid, int hi) {
+
         assert lo >= 0 && hi <= arr.length && arr.length == aux.length;
         System.arraycopy(arr, lo, aux, lo, hi - lo);
 
@@ -28,26 +27,24 @@ public class MergeSort {
         }
     }
 
-    public static void sort(Comparable[] arr, int lo, int hi) {
-        if (hi - lo <= 1) {
-            // InsertSort.sort(arr, lo, hi);
-            return;
-        }
-        int mid = lo + (hi - lo) / 2;
-        sort(arr, lo, mid);
-        sort(arr, mid, hi);
-        merge(arr, lo, mid, hi);
-    }
     public static void sort(Comparable[] arr) {
-        aux = new Comparable[arr.length];
-        sort(arr, 0, arr.length);
+        int len = arr.length;
+        aux = new Comparable[len];
+        for (int sz = 1; sz < len; sz += sz) {
+            for (int lo = 0; lo + sz < len; lo += sz) {
+                int hi = Math.min(lo + 2 * sz, len);
+                int mid = lo + sz;
+                merge(arr, lo, mid, hi);
+            }
+        }
     }
+
 
     public static void main(String[] args) {
         File file = new File(Const.DATA_PATH + "tiny.txt");
         In in = new In(file);
         String[] arr = in.readAllStrings();
-        Merge.sort(arr);
+        MergeSortBottomUp.sort(arr);
         assert SortUtils.isSorted(arr);
         SortUtils.show(arr);
     }

@@ -5,9 +5,6 @@ import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.Selection;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 public class SelectionSort {
 

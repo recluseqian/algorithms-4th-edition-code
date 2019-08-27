@@ -19,6 +19,8 @@ public class SortCompare {
                 break;
             case "merge":
                 MergeSort.sort(arr);
+            case "quick":
+                QuickSort.sort(arr);
         }
         assert SortUtils.isSorted(arr);
         return timer.elapsedTime();
@@ -39,13 +41,12 @@ public class SortCompare {
 
     public static void main(String[] args) {
         String[] algList1 = {"selection", "insertion", "shell"};
-        String[] algList2 = {"shell", "merge"};
+        String[] algList2 = {"merge", "quick", "shell"};
         for (String alg : algList2) {
-            int N = 4000000, T = 1;
+            int N = 400000, T = 10;
             double total_time = timeRandomInput(alg, N, T);
             System.out.printf("For %d random number %s sort cost %f sec average\n",
                     N, alg, total_time / T);
         }
-
     }
 }
